@@ -18,7 +18,6 @@ public class Deliver {
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant moment;
 
-    @Enumerated(EnumType.STRING)
     private DeliverStatus status;
 
     private String feedback;

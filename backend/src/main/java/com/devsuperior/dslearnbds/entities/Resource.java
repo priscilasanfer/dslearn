@@ -18,7 +18,7 @@ public class Resource {
     private String description;
     private Integer position;
     private String imgUri;
-    @Enumerated(EnumType.STRING)
+
     private ResourceType type;
     private String externalLink;
 
