@@ -1,7 +1,20 @@
 package com.devsuperior.dslearnbds.entities;
 
-import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_lesson")
@@ -18,6 +31,9 @@ public abstract class Lesson   {
     @JoinColumn(name = "section_id")
     private Section section;
 
+    @OneToMany(mappedBy = "lesson")
+    private List<Deliver> deliveries = new ArrayList<>();
+
     @ManyToMany
     @JoinTable(name = "tb_lessons_done",
             joinColumns = @JoinColumn(name = "lesson_id"),
@@ -27,9 +43,6 @@ public abstract class Lesson   {
             }
     )
     private Set<Enrollment> enrollmentsDone = new HashSet<>();
-
-    @OneToMany(mappedBy = "lesson")
-    private List<Deliver> deliveries = new ArrayList<>();
 
     public Lesson() {
     }

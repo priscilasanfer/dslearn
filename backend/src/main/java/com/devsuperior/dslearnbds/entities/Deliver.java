@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
 
+@Entity
 @Table(name = "tb_deliver")
 public class Deliver {
 
@@ -34,7 +35,12 @@ public class Deliver {
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
-    public Deliver(Long id, String uri, Instant moment, DeliverStatus status, String feedback, Integer correctCount, Enrollment enrollment, Lesson lesson) {
+    public Deliver() {
+    }
+
+    public Deliver(Long id, String uri, Instant moment, DeliverStatus status, String feedback, Integer correctCount,
+                   Enrollment enrollment, Lesson lesson) {
+        super();
         this.id = id;
         this.uri = uri;
         this.moment = moment;

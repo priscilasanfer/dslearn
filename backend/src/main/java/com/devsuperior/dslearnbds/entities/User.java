@@ -1,7 +1,5 @@
 package com.devsuperior.dslearnbds.entities;
 
-import org.aspectj.weaver.ast.Not;
-
 import javax.persistence.*;
 import java.util.*;
 
@@ -25,6 +23,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Notification> notifications = new ArrayList<>();
 
+    @OneToMany(mappedBy = "author")
+    private List<Topic> topics = new ArrayList<>();
+
     public User() {
     }
 
@@ -47,7 +48,7 @@ public class User {
         return name;
     }
 
-    public void setNome(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -65,6 +66,18 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public List<Topic> getTopics() {
+        return topics;
     }
 
     @Override
