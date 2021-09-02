@@ -4,10 +4,7 @@ import com.devsuperior.dslearnbds.entities.pk.EnrollmentPK;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_enrollment")
@@ -35,7 +32,6 @@ public class Enrollment {
 
     public Enrollment(User user, Offer offer, Instant enrollMoment, Instant refundMoment, boolean available,
                       boolean onlyUpdate) {
-        super();
         id.setUser(user);
         id.setOffer(offer);
         this.enrollMoment = enrollMoment;
@@ -92,5 +88,32 @@ public class Enrollment {
         this.onlyUpdate = onlyUpdate;
     }
 
+    public EnrollmentPK getId() {
+        return id;
+    }
 
+    public Set<Lesson> getLessonsDone() {
+        return lessonsDone;
+    }
+
+    public List<Deliver> getDeliveries() {
+        return deliveries;
+    }
+
+    public void setId(EnrollmentPK id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Enrollment that = (Enrollment) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

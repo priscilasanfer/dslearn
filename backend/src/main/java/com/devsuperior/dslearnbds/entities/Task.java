@@ -1,13 +1,9 @@
-package com.devsuperior.dslearnbds;
-
-import com.devsuperior.dslearnbds.entities.Lesson;
-import com.devsuperior.dslearnbds.entities.Section;
-
-import java.time.Instant;
+package com.devsuperior.dslearnbds.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.Instant;
 
 @Entity
 @Table(name = "tb_task")
