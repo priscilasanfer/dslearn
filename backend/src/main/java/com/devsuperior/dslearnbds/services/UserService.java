@@ -29,8 +29,13 @@ public class UserService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private AuthService authService;
+
     @Transactional(readOnly = true)
     public UserDTO findById(Long id) {
+        authService.validateUserOrAdmin(id);
+
         User user = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id: " + id + " not found"));
         return new UserDTO(user);
